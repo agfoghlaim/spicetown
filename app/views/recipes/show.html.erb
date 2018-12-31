@@ -1,0 +1,44 @@
+<div class="row">
+    <h1>Show Recipe Page</h1>
+    <h2>
+    <%= @recipe.title %>
+    <p><%= image_tag @recipe.recipeimg %></p>
+    <small>
+        <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+        <%= link_to 'Back', recipes_path %> |
+        <%= link_to 'Delete', recipe_path,  method: :delete, data: {confirm: "are you sure?"} %>
+    </small>
+    </h2>
+    <h3>Description:</h3>
+    <p><%= @recipe.description %></p>
+
+
+    <h3>Ingredients/Products</h3>
+    <ul>
+        <% @recipe.products.each do |p| %>
+        <li>
+        <strong><%= link_to p.title, product_path(p) %></strong>
+        <small> Only<%= link_to p.price, product_path(p) %> per kg</small>
+        </li>
+        <% end %>
+
+        <% @recipe.anyingredients.each do |p| %>
+        <li><%= p.name %></li>
+        <% end %><br>
+    </ul>
+
+    <h3>Directions</h3>
+    <ol>
+    <% @recipe.directions.each do |p| %>
+    <li><%= p.step %></li>
+    <% end %><br>
+    </ol>
+
+   
+</div>
+
+
+
+
+
+
