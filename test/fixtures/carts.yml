@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  billing: MyString
+  shipping: MyString
+  cart_total: 9.99
+  paid: false
+  user: one
+
+two:
+  status: MyString
+  billing: MyString
+  shipping: MyString
+  cart_total: 9.99
+  paid: false
+  user: two
