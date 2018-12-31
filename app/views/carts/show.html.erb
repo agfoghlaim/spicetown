@@ -1,0 +1,11 @@
+<h1>Cart total: <%= @cart.cart_total%></h1>
+<% @cart.oitems.each do |i|%>
+<p>
+weight: <%= i.weight %>g
+<%= i.product.title %>
+Item Total:<%= number_to_currency(i.total) %>
+</p>
+<%= link_to  "remove item", i, method: :delete %>
+<% end %>
+
+<%= button_to "Pay Now", associate_user_with_cart_path(:id => @cart.id) %>

@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: :true
   has_many :oitems, dependent: :destroy
 
   def add_product(product, weight)
@@ -35,6 +35,8 @@ class Cart < ApplicationRecord
     
     self[:cart_total] = cart_total
   end
+
+
 
 
 end

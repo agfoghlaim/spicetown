@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   #for devise controllers, set cart 'the lazy way'
   #before_action :get_current_cart, if: :devise_controller?
   before_action :get_current_cart
+  
   protected
 
   def get_current_cart

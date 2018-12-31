@@ -12,16 +12,18 @@ def create
 
   #need to get the current cart, helper method in application ctrl
   @cart = current_cart
-  
+  puts "in create, product:#{product} , weight:#{weight} cart: #{@cart}"
 
   #add_product in cart model
   @oitem = @cart.add_product(product, weight)
   if @oitem.save
-
+ puts "\n\n\nin oitem.save"
     #see set_cart_total in cart model
       #set the cart_total and save it
     @cart.set_cart_total(@cart.oitems)
+    
     @oitem.cart.save
+    puts "oitem cart is : #{@oitem.cart}"
     redirect_to @oitem.cart, notice:'added'
   end
 end
