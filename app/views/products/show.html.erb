@@ -1,9 +1,12 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
+<h1>Show Product</h1>
+<h2>
   <%= @product.title %>
-</p>
+  <small>
+    <%= link_to 'Edit', edit_product_path(@product) %> |
+    <%= link_to 'Back', products_path %>
+  </small>
+</h2>
 
 <p>
   <strong>Description:</strong>
@@ -15,5 +18,10 @@
   <%= @product.price %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<h3>Categories</h3>
+
+<% @product.categories.each do |cat| %>
+  <strong><%= link_to cat.title, category_path(cat) %></strong><small> link should to to all products in this cat?</small>
+<% end %><br>
+
+
