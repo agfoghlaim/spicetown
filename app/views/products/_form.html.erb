@@ -26,6 +26,12 @@
     <%= form.text_field :price, class:'form-control' %>
   </div>
 
+   <h3>Image</h3>
+        <p>
+      	  <%= form.label :productimg %>
+          <%= form.file_field(:productimg, {:class => 'form-control'}) %>
+    </p>
+
   <h4>Categories</h4>
   <div class="field">
     <p>

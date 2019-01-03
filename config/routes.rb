@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "products#index"
   
+match '/categories/:category_id/get_products' => 'categories#get_products', :via => [:get], :as => 'get_products'
 
 match '/recipes/save_direction' => 'recipes#save_direction', :via => [:post], :as => 'save_direction'
 

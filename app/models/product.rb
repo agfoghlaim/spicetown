@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   has_many :categories, through: :prodcats
   has_many :recipes, through: :ingredients
   has_many :oitems, dependent: :delete_all
+  has_one_attached :productimg
 
   validates :title, presence: true
   

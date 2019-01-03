@@ -19,12 +19,26 @@
             <li><%= link_to "New Recipe", new_recipe_path %></li>
             <li><%= link_to "Sign in", root_path %></li>
             <%= @cart %>
-            <li><%= link_to "cart #{@cart.cart_total}", cart_path(1) %></li>
+            <li><%= link_to "cart #{@cart.cart_total}", cart_path(@cart) %></li>
             
           </ul>
       </div>
     </nav>
     <div class="container">
+
+    <%# categories sidebar -will need to be conditional %>
+        <div class="row">
+          <div class="col col-md-3" id="getcontent" >
+            <h2>Categories</h2>
+            <% @all_categories.each do |category|%>
+                <%# category_products_path because of nested routes %>
+                <%= category.id%>
+                    <h4 id="<%= category.id%>"><%= category.title%> (<%= category.products.count%>)</h4>
+                
+            <% end %>
+          </div><%# end categories sidebar %>
+
+          
     <%= yield %>
 
       <% if user_signed_in? %>

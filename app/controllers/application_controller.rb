@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
   helper_method :current_cart
+  before_action :get_all_categories
 
   #for devise controllers, set cart 'the lazy way'
   #before_action :get_current_cart, if: :devise_controller?
@@ -31,6 +32,11 @@ class ApplicationController < ActionController::Base
     end
     return @cart
 
+  end
+
+  #for category sidebar
+  def get_all_categories
+    @all_categories = Category.all
   end
 
   
