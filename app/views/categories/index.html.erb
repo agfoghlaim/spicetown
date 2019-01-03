@@ -1,0 +1,14 @@
+<h1>Categories</h1>
+ <% @categories.each do |category| %>
+
+    <p><%= category.title %>
+    
+      <%= link_to 'show', category_path(category) %>
+      <%= link_to 'edit', edit_category_path(category) %>
+      <%= link_to 'delete', category_path(category), 
+method: :delete,
+data: {confirm: 'sure?'} %>
+  </p>
+
+ <% end %>
+    <p><%=link_to 'New Category', new_category_path %></p>

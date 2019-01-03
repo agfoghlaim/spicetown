@@ -1,0 +1,13 @@
+<h1>edit category</h1>
+
+<%= form_for :category, url: category_path(@category), method: :patch do |f| %>
+
+  
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field(:title, {:class => 'form-control'}) %>
+  </p>
+
+
+  <p><%= f.submit({:class => 'btn'})%>
+<% end %>

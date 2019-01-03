@@ -1,0 +1,13 @@
+<h1>New Category</h1>
+
+<%= form_for :category, url: categories_path do |f| %>
+
+
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field(:title, {:class => 'form-control'}) %>
+  </p>
+
+
+  <p><%= f.submit({:class => 'btn'})%>
+<% end %>

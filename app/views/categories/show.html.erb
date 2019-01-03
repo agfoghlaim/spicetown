@@ -1,0 +1,9 @@
+<h3>Category</h3>
+
+
+<h2><%= @category.title %></h2>
+<%= link_to 'edit', edit_category_path(@category) %>
+
+<%= link_to 'delete', category_path(@category), 
+method: :delete,
+data: {confirm: 'sure?'} %>
