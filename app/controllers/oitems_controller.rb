@@ -25,6 +25,10 @@ def create
     @oitem.cart.save
     puts "oitem cart is : #{@oitem.cart}"
     redirect_to @oitem.cart, notice:'added'
+
+    #refresh page, instead of redirecting to cart
+    #js would be better for this
+    #redirect_to request.referrer, notice:'added'
   end
 end
 

@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   has_many :recipes, through: :ingredients
   has_many :oitems, dependent: :delete_all
   has_one_attached :productimg
+  belongs_to :user, :optional => true
 
   validates :title, presence: true
   

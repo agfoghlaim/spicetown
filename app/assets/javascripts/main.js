@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
  
-  const getcontent = document.querySelector('div#getcontent');
-  getcontent.addEventListener('click', getProducts);
+  //const getcontent = document.querySelector('div#getcontent');
+  //getcontent.addEventListener('click', getProducts);
   
   function getProducts(e){
       e.preventDefault()
@@ -37,21 +37,30 @@ document.addEventListener("DOMContentLoaded", function(){
           );
       }
   }
+
   
   
   function renderData(data){
   console.log("render got data ", data)
   const str = `
-  <div class="col-md-9 col">
-      ${data.map(d => `<div class="col-md-3 col">
-      <h4 class="title">${d.product.title}</h4>
+  
+      ${data.map(d => `<div class="col col-md-4 col-sm-4 col-lg-4" id="${d.product.id}">
+      <h3 class="title">${d.product.title}</h3>
       <p class="price">${d.product.price}</p>
-      <img src="${d.img_url}">
+      <img class="img-thumbnail" src="${d.img_url}">
+      <p>${d.product.description}</p>
+      <p>${d.product.price}</p>
+      <a href="${window.location.href}products/${d.product.id}">Read More</a>
       </div>` ).join('')}
-  </div>
+  
   `;
   document.querySelector('.theProducts').innerHTML = str;
+
+    //add event listener to addToCartButton (just created)
+    const addToCart = document.querySelector('#addToCart');
+    addToCart.addEventListener('click', function(){console.log("work?")})
   
   }
-  
-  
+
+
+

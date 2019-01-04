@@ -30,5 +30,6 @@ match '/recipes/edit_anyingredient' => 'recipes#edit_anyingredient', :via => [:p
 
 match '/carts/associate_user_with_cart' => 'carts#associate_user_with_cart', :via => [:post], :as => 'associate_user_with_cart'
 
+match '/products/filter_products' => 'products#filter_products', :via => [:post], :as => 'filter_products'
 
 end

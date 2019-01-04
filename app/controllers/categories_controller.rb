@@ -2,27 +2,34 @@ class CategoriesController < ApplicationController
 
   def get_products
     @category = Category.find(params[:category_id])
+
+    #products with this category id
     products = @category.products
-   to_send = []
-    puts @img
+    @products = @category.products
+    #init array, will need to add product details from product table as well as product img url from the active storage attachments table
+    to_send = []
+   
       products.each do |product|
         if product.productimg.attached?
-    
+
+        #get the img url
         img_url = 
         Rails.application.routes.url_helpers.rails_blob_path(product.productimg, only_path: true)
+
+        #add product and img dets to array
         to_send.push(:product => product, :img_url => img_url)
       end
 
     end
-puts "\n\n\n to send: #{to_send}"
-
+    #puts "\n\n\n to send: #{to_send}"
+ #redirect_to get_products
 
   respond_to do |format|
     #respons to js request for homepage
-    format.json { render :json => to_send }
-    
+   format.json { render :json => to_send }
+  
     #so regular page works too
-    #format.html
+    
   end
    end
 

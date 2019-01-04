@@ -44,13 +44,17 @@
   </p>
   </div>
 
-  <h4>Add New Category</h4>
+  <%
+=begin%>
+ <h4>Add New Category</h4>
   <%= form.fields_for :categories do |p| %>
     <p>
       <%= p.label :title %>
       <%= p.text_field :title, class:'form-control' %>
     </p>
-  <% end %>
+  <% end %> 
+<%
+=end%>
 
  
 

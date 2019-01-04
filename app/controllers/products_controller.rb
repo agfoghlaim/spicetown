@@ -1,12 +1,23 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except:[:index,:show]
   # GET /products
   # GET /products.json
   def index
     @products = Product.all
     @cart =  current_cart
     puts "current cart is #{@cart}"
+  end
+
+  def filter_products
+
+    #get products in this cat
+    category = Category.find(params[:category_id])
+    @products = category.products
+    
+    #re render view to update
+    render :index
+
   end
 
   # GET /products/1
@@ -22,6 +33,8 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    puts params
+    puts "/n/n/n/n here:#{params[:categories_attributes]}"
     @product.categories.build
   end
 
@@ -29,6 +42,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    @product.user = current_user
 
     respond_to do |format|
       if @product.save
@@ -44,6 +58,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    puts "/n/n/n/n oh:#{params[:product][:categories_attributes]}"
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }

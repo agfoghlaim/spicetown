@@ -3,7 +3,9 @@
 <h2>
   <%= @product.title %>
   <small>
+    <% if current_user && current_user.admin %>
     <%= link_to 'Edit', edit_product_path(@product) %> |
+    <% end %>
     <%= link_to 'Back', products_path %>
   </small>
 </h2>
@@ -17,6 +19,9 @@
   <strong>Price:</strong>
   <%= @product.price %>
 </p>
+
+
+
 
 <h3>Categories</h3>
 
