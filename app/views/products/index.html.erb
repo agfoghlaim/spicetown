@@ -8,7 +8,7 @@
           <% end %>
 
           
-          <p><%= product.description %></p>
+          <p><%= product.description.truncate(250) %></p>
           <p><%= product.price %></p>
           <p><%= link_to 'Read More', product %></p>
 
@@ -25,6 +25,8 @@
                   <%= hidden_field_tag :product_id, product.id %>
                 
                   <%= number_field_tag :weight, 1 %>
+               
+                <%= select_tag(:weight, options_for_select(Product::WEIGHT, selected: :weight )) %>
                   <%= submit_tag 'add to cart' , class: "btn btn-secondary btn-sm" %>
                 <% end %>
               </p>

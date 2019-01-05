@@ -1,21 +1,42 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except:[:index,:show]
+  before_action :authenticate_user!, except:[:index,:show, :filter_products]
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+  
+   
+
+    if params[:category_ids]
+      #filter
+      @cat_ids = params[:category_ids]
+      @products = Product.joins(:categories).where('categories.id IN (?)', params[:category_ids])
+    else
+      #all
+      @cat_ids = []
+      @products = Product.all
+
+    end
     @cart =  current_cart
-    puts "current cart is #{@cart}"
+    
   end
 
   def filter_products
-
+ puts "filter params: #{params}"
     #get products in this cat
-    category = Category.find(params[:category_id])
-    @products = category.products
+
+   @cat_ids = params[:category_ids] || []
+    @products = Product.joins(:categories)
+  .where('categories.id IN (?)', params[:category_ids])
+
+
+
+ 
+   # category = Category.find(params[:category_id])
+   # @products = category.products
     
-    #re render view to update
+    #re render view to update 
+    #redirect_to :action => :index,:filter_products => true
     render :index
 
   end

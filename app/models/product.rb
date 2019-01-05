@@ -16,4 +16,6 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :prodcats, allow_destroy: true
 
   validates :title, :description, :price, presence: true
+
+  WEIGHT = ["100", "250", "500", "1"]
 end

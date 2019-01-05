@@ -32,27 +32,11 @@
     </nav>
     <div class="container">
 
-    <%# categories sidebar -will need to be conditional %>
-    
-        <div class="col col-md-3 col-sm-3 col-lg-3" id="getcontent" >
-            <h2>Categories</h2>
-            <% @all_categories.each do |category|%>
-                <%# category_products_path because of nested routes %>
-                    <h4 id="<%= category.id%>"><%= category.title%> (<%= category.products.count%>)</h4>
-            <% end %>
-
-
-            <h2>Categories Rails</h2>
-            <% @all_categories.each do |category| %>
-                        <%= form_tag filter_products_path do %>
-                  <%= hidden_field_tag :category_id, category.id %>
-                
-                 
-                  <%= submit_tag "#{category.title}(#{category.products.count})" , class: "btn btn-secondary btn-sm" %>
-                <% end %>
-             
-            <% end %>
-        </div><%# end categories sidebar %>
+    <%# categories sidebar -show if root path or any product path with index action %>
+    <% if current_page?(root_path) || current_page?(controller: 'products', action: 'index') %>
+     <%= render partial: 'categories/sidebar' %>
+    <% end %>
+   
 
         
    
