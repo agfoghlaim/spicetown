@@ -32,6 +32,7 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
       :password,
       :password_confirmation, 
+      :current_password,
       :phone, 
       :shipping_address, 
       :billing_address

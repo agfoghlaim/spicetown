@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_tag charges_path do %>
   <article>
     <% if flash[:error].present? %>
@@ -5,14 +6,38 @@
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
-    <label class="amount">
-      <span><%= @amount %></span>
-    </label>
+   
   </article>
+
+  <h3>Order Total: <span><%= number_to_currency(@cart.cart_total, unit: "€") %></span></h3>
+  
+  <h3>Order Summary</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td><strong>Product</strong></td>
+        <td><strong>Weight</strong></td>
+        <td><strong>Item total</strong></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.oitems.each do |oi| %>
+      <tr>
+        <td><%= oi.product.title  %></td>
+        <td><%= oi.weight %></td>
+        <td><%= oi.total  %></td>
+      </tr>
+   <% end  %>
+    </tbody>
+  </table>
+ 
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
            data-key="<%= Rails.application.credentials.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
+          data-description="Spiceworld"
           data-amount="<%= @amount%>"
+          data-currency="EUR"
           data-locale="auto"></script>
 <% end %>
+
+</div>
