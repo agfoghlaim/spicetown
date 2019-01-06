@@ -1,0 +1,9 @@
+<p>
+        <%= form_tag oitems_path do %>
+          <%= hidden_field_tag :product_id, product.id %>
+        <div class="form-group">Weight
+          <%= select_tag(:weight, options_for_select(Product::WEIGHT, selected: :weight )) %>
+        </div>
+        <%= submit_tag 'add to cart' , class: "btn btn-warning btn-sm" %>
+        <% end %>
+      </p> 

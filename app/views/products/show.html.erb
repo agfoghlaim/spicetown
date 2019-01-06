@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <h2>
   <%= @product.title %>
   <small>
@@ -22,8 +21,10 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @product.price %>
+  <%=number_to_currency(@product.price , unit: "€") %>
+
 </p>
+ <%= render 'add_to_cart', product:@product %>  
 
 <% if @product.recipes.count > 0 %>
 <h3>Recipes featuring <%= @product.title %></h3>

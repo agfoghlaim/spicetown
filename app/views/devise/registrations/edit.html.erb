@@ -1,4 +1,30 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Welcome <%= current_user.first_name %></h2>
+
+
+
+<h3>History</h3>
+<% current_user.carts.each do |c| %>
+  <% if c.paid == true %>
+    <h4>Orders</h4>
+    <p>Paid on <%=c.updated_at %></p>
+    <p>Shipped to:<%= c.shipping %></p>
+  <% end %>
+    <h4>Carts</h4>
+    <p>on <%=c.updated_at %>:</p>
+    <% c.oitems.each do |oi| %>
+      <p>You shopped for</p>
+      <p>
+      <%=oi.product.title %>
+      <%=oi.weight %>g <%=number_to_currency(oi.total , unit: "€") %>
+      <%= link_to "Shop for #{oi.product.title} now", product_path(oi.product.id), class:"btn btn-success" %>
+      </p>
+    
+  <% end %>
+  
+ 
+<% end %>
+
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>

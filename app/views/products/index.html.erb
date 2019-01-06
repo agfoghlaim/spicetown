@@ -1,43 +1,26 @@
 <div class="col col-md-9 col-sm-9 col-lg-9 theProducts">
-      <% @products.each do |product| %>
-      <div class="col col-md-4 col-sm-4 col-lg-4">
-        <h3><%= product.title %></h3>
-          <% if product.productimg.attached? %>
+  <% @products.each do |product| %>
+    <div class="col col-md-4 col-sm-4 col-lg-4">
+      <h3><%= product.title %></h3>
+      <% if product.productimg.attached? %>
             <!-- product.image.present? will always return true, use attached? to check presence -->
-            <p><%= image_tag product.productimg, class: "img-thumbnail" %></p>
-          <% end %>
+        <p><%= image_tag product.productimg, class: "img-thumbnail" %></p>
+      <% end %>
 
-          
-          <p><%= product.description.truncate(250) %></p>
-          <p><%= product.price %></p>
-          <p><%= link_to 'Read More', product %></p>
+      <p><%= product.description.truncate(250) %></p>
+      <p><strong><%= number_to_currency(product.price , unit: "€")%></strong> per gram</p>
+      
+      <p><%= link_to 'Read More', product %></p>
 
-              <% if current_user && current_user.admin %>
-              <p>
-                <span><%= link_to 'Edit', edit_product_path(product) %></span> | 
-                <span><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></span> | 
-                 <span><%= link_to 'New Product', new_product_path %></span>
-              </p>
-              <% end %>
-
-              <p>
-                <%= form_tag oitems_path do %>
-                  <%= hidden_field_tag :product_id, product.id %>
-                
-                  <%= number_field_tag :weight, 1 %>
-               
-                <%= select_tag(:weight, options_for_select(Product::WEIGHT, selected: :weight )) %>
-                  <%= submit_tag 'add to cart' , class: "btn btn-secondary btn-sm" %>
-                <% end %>
-              </p>
-
-            
-        </div> 
-        <% end %>
- 
-
-    
- 
-
+      <% if current_user && current_user.admin %>
+        <p>
+          <span><%= link_to 'Edit', edit_product_path(product) %></span> | 
+          <span><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></span> | 
+          <span><%= link_to 'New Product', new_product_path %></span>
+        </p>
+      <% end %>
   
-</div>
+      <%= render 'add_to_cart', product:product %>  
+    </div> 
+  <% end %>
+</div>sssssss
