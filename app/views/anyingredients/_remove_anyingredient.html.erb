@@ -1,0 +1,6 @@
+<%= form_tag(remove_anyingredient_path, method: :post) do %>
+
+<%= hidden_field_tag :id, @recipe.id %>
+<%= hidden_field_tag :anyingredient_id, anyingredient.id %>
+<div><%= submit_tag 'remove', class:"btn btn-danger btn-xs" %></div>
+<% end %>

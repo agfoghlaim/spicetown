@@ -1,6 +1,7 @@
+
 <%= form_tag(edit_direction_path, method: :post) do %>
   <%= text_area_tag :step, direction.step,{class:'form-control', rows:"5"} %>
   <%= hidden_field_tag :id, @recipe.id %>
   <%= hidden_field_tag :direction_id, direction.id %>
-  <%= submit_tag 'Save Changes' %>
+  <%= submit_tag 'Save Changes', class:"btn btn-info btn-xs" %>
 <% end %>

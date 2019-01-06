@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :find_recipe, only: [:show, :edit, :update, :destroy, :save_direction, :remove_direction, :save_anyingredient, :remove_anyingredient]
+  before_action :find_recipe, only: [:show, :edit, :update, :destroy, :save_direction, :remove_direction, :save_anyingredient, :remove_anyingredient, :edit_direction, :edit_anyingredients]
 
   def index
     @recipes = Recipe.all
@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
   end
 
   def new
+    
     @recipe = Recipe.new
     @recipe.products.build
     @recipe = Recipe.new
@@ -18,6 +19,7 @@ class RecipesController < ApplicationController
   end
 
   def create
+    @isNewPath = true
     @recipe = Recipe.new(recipe_params)
 
     # if(@recipe.save)
@@ -30,7 +32,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       if @recipe.save
         #save after title, desc, image and product associations
-        #redirect now to add the directions and ingredients
+        #now to add the directions and ingredients
         format.html { redirect_to edit_recipe_path(@recipe), notice: 'Recipe was successfully created.' }
         format.json { render json: @recipe, status: :created, location: @recipe }
         format.js
@@ -94,6 +96,7 @@ class RecipesController < ApplicationController
   def edit_direction
     direction = Direction.find(params[:direction_id])
     direction.update(:step => params[:step])
+    redirect_to edit_recipe_path(@recipe.id)
   end
 
   def save_anyingredient
@@ -126,7 +129,7 @@ class RecipesController < ApplicationController
   private 
 
   def recipe_params
-    params.require(:recipe).permit(:title, :description, :recipeimg,
+    params.require(:recipe).permit(:title, :description, :recipeimg, 
       ingredients_attributes: [:id, :name, :_destroy],
         directions_attributes: [:id, :step, :_destroy],
         product_ids: [],

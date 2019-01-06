@@ -1,5 +1,5 @@
 <%= form_tag(remove_direction_path, method: :post) do %>
   <%= hidden_field_tag :id, @recipe.id %>
   <%= hidden_field_tag :direction_id, direction.id %>
-  <%= submit_tag 'Delete step' %>
+  <%= submit_tag 'Remove', class:"btn btn-danger btn-xs" %>
 <% end %>

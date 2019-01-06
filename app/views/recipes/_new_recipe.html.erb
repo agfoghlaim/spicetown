@@ -1,0 +1,23 @@
+    <h3>Directions</h3>
+    <% @recipe.directions.each do |d| %>
+    <p><%= d.step %></p>
+    <% end %>
+    <p>
+    <%= f.fields_for :directions, Direction.new do |ff| %>
+      <%= ff.label :step %>
+      <%= ff.text_area :step, class:'form-control' %>
+      <%= ff.submit 'add another direction', :class => 'btn btn-success btn-xs' %>
+    <% end %>
+    </p>
+
+    <h3>Ingredients</h3>
+    <% @recipe.anyingredients.each do |d| %>
+    <p><%= d.name %></p>
+    <% end %>
+    <p>
+    <%= f.fields_for :anyingredients, Anyingredient.new do |ff| %>
+      <%= ff.label :name %>
+      <%= ff.text_area :name, class:'form-control' %>
+      <%= ff.submit 'anoother', :class => 'btn btn-success btn-xs' %>
+    <% end %>
+    </p>

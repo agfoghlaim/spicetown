@@ -1,10 +1,10 @@
-<div class="well" style="background-color:lightgreen;">
+
 <%= form_tag(save_direction_path, method: :post) do %>
-step
 
-    <%= text_area_tag :step,nil, {class:'form-control', rows:"5"} %>
-    <%= hidden_field_tag :id, @recipe.id %>
-
-    <div><%= submit_tag 'Save' %></div>
+<%= text_field_tag :step %>
+<%= hidden_field_tag :id, @recipe.id %>
+<%= submit_tag 'Add', class:"btn btn-success btn-xs" %>
 <% end %>
-</div>
+
+
+

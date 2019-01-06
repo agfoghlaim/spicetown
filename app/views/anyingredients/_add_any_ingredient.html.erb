@@ -1,0 +1,6 @@
+<%= form_tag(save_anyingredient_path, method: :post) do %>
+  <%= text_field_tag :name %>
+  <%= hidden_field_tag :id, @recipe.id %>
+  <%= submit_tag 'Add', class:"btn btn-success btn-xs" %>
+
+<% end %>
