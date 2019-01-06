@@ -36,6 +36,14 @@ class Cart < ApplicationRecord
     self[:cart_total] = cart_total
   end
 
+  def add_payment_to_cart(token, id)
+    cart = Cart.find(id)
+    cart.update( :status => token, :paid => true)
+  
+    #session hash not available in models!!
+    #session.delete(:cart_id)
+  end
+
 
 
 

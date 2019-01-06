@@ -30,6 +30,25 @@
    <% end  %>
     </tbody>
   </table>
+
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <td><strong>Billing Address</strong></td>
+        <td><strong>Shipping Name and Address</strong></td>
+       
+      </tr>
+    </thead>
+    <tbody>
+     
+      <tr>
+        <td><%= @cart.billing  %></td>
+        <td><%= @cart.shipping  %></td>
+       
+      </tr>
+  
+    </tbody>
+  </table>
  
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"

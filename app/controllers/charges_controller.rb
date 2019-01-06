@@ -26,12 +26,22 @@ class ChargesController < ApplicationController
       :description => 'Rails Stripe customer',
       :currency    => 'eur'
     )
-  
+    @cart.add_payment_to_cart(params[:stripeToken], @cart.id)
+    session.delete(:cart_id)
+    #@cart.update( :status => params[:stripeToken])
+    ##redirect_to cart_path(@cart), :method => 'PUT' , :status => params[:stripeToken]
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to new_charge_path
+
+    
+    ##redirect_to new_charge_path
+    ##redirect to edit cart, pass stripe params
+    
     
   end
+ 
+  
+ 
   
 
   

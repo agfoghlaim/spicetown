@@ -1,0 +1,45 @@
+<%= form_with(model: @cart, local: true) do |form| %>
+  <% if @cart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cart.errors.count, "error") %> prohibited details from being saved:</h2>
+
+      <ul>
+      <% @cart.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  
+
+<h1>Order Details</h1>
+ <p>Hi <%= @cart.user.first_name %>. You can edit order details here.</p>
+
+
+  <div class="form-group">
+    <%= form.label :billing, 'Billing Address' %>
+    <%= form.text_field :billing, class:'form-control', placeholder: "#{@cart.billing }" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :shipping, 'Shipping Name and Address' %>
+    <%= form.text_area :shipping, class:'form-control',  placeholder: "#{@cart.shipping }" %>
+  </div>
+
+ 
+
+ 
+
+
+
+ 
+
+ 
+
+  <div class="actions">
+    <%= form.submit 'Go to Payment' %>
+  </div>
+<% end %>
