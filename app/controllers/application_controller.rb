@@ -34,10 +34,9 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def clear_cart
-    session.delete(:cart_id)
-    #session[:cart_id] = @cart.id
-  end
+  # def clear_cart
+  #   session.delete(:cart_id)
+  # end
 
   #for category sidebar
   def get_all_categories

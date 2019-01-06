@@ -1,1 +1,10 @@
-<h2>Thanks, you paid <strong><%= @amount %></strong>!</h2>
+<h2>Thanks, you paid <strong><%= number_to_currency(@user.carts.last.cart_total, unit: "€") %></strong>!</h2>
+
+<p><strong>Order confirmation no:</strong> #<%= @user.carts.last.id %></p>
+<p><strong>Billing Address:</strong> <%= @user.carts.last.billing %></p>
+<p><strong>Shipping Address:</strong> <%= @user.carts.last.shipping %></p>
+
+<% @user.carts.last.oitems.each do |oi| %>
+  <p><%= oi.product.title %> <%= oi.weight %>g</p>
+  
+<% end %>

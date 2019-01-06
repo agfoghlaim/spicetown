@@ -27,9 +27,10 @@ class ChargesController < ApplicationController
       :currency    => 'eur'
     )
     @cart.add_payment_to_cart(params[:stripeToken], @cart.id)
+      @user = current_user
+    #todo move to app ctrl
     session.delete(:cart_id)
-    #@cart.update( :status => params[:stripeToken])
-    ##redirect_to cart_path(@cart), :method => 'PUT' , :status => params[:stripeToken]
+  
   rescue Stripe::CardError => e
     flash[:error] = e.message
 
