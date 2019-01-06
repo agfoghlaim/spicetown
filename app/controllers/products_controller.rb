@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
   
-   
+   @home_page = true
 
     if params[:category_ids]
       #filter
@@ -43,7 +43,9 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   # GET /products/1.json
+ 
   def show
+    
   end
 
   # GET /products/new

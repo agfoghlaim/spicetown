@@ -11,16 +11,36 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe.products.build
+    @recipe = Recipe.new
+    5.times { @recipe.directions.build }
+    5.times { @recipe.anyingredients.build }
+    #@recipe.anyingredients.build
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
 
-    if(@recipe.save)
-      redirect_to @recipe, notice: "Recipe created"
-    else
-      render 'new'
+    # if(@recipe.save)
+    #   #commenting this to check if the stepped form from w3 will work
+    #   redirect_to @recipe, notice: "Recipe created"
+    # else
+    #   render 'new'
+    # end
+
+    respond_to do |format|
+      if @recipe.save
+        #save after title, desc, image and product associations
+        #redirect now to add the directions and ingredients
+        format.html { redirect_to edit_recipe_path(@recipe), notice: 'Recipe was successfully created.' }
+        format.json { render json: @recipe, status: :created, location: @recipe }
+        format.js
+      else
+        format.html { render action: "new" }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
+      
   end
 
   def edit

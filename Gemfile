@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 #spicy gems
 gem 'bootstrap-sass', '~> 3.4'
+gem 'jquery-rails'
 gem 'devise', '~> 4.5'
 gem 'stripe', '~> 4.4'
 

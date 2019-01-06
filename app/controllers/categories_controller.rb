@@ -39,6 +39,7 @@ class CategoriesController < ApplicationController
   end
 
   def new
+
     
   end
 
@@ -79,7 +80,8 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:title,
       products_attributes: [:id, :title, :_destroy, :productimg],
-      prodcats_attributes: [:category_id, :product_id, :_destroy] )
+      prodcats_attributes: [:category_id, :product_id, :_destroy],
+      product_ids: [] )
   end
 
   

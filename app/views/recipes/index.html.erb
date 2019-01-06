@@ -2,6 +2,9 @@
 <div class="row">
 <% @recipes.each do |r| %>
     <div class="col-md3">
+    <% if r.recipeimg.attached? %>
+    <p><%= image_tag r.recipeimg, class: "img-thumbnail" %></p>
+    <% end %>
     <h3><%= link_to r.title, r %></h3>
     <p><%= r.description %></p>
     </div>

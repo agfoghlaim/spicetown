@@ -1,0 +1,106 @@
+   <h3>Add Directions</h3>
+      <div id='directions-add'>
+        <%= form_tag(save_direction_path, method: :post) do %>
+        step
+          <%= text_area_tag :step,nil, {class:'form-control', rows:"5"} %>
+          <%= hidden_field_tag :id, @recipe.id %>
+          <div><%= submit_tag 'Save' %></div>
+        <% end %>
+      </div>
+    
+      <h3>Remove Direction</h3>
+      <div id='directions-remove'>
+          <% @recipe.directions.each do |direction| %>
+          <p>
+            <%= form_tag(remove_direction_path, method: :post) do %>
+              <%= direction.step.truncate(200) %>
+              <%= hidden_field_tag :id, @recipe.id %>
+              <%= hidden_field_tag :direction_id, direction.id %>
+              <div><%= submit_tag 'remove' %></div>
+            <% end %>
+          </p>
+          <p>
+             <%= form_tag(edit_direction_path, method: :post) do %>
+              <%= text_area_tag :step, direction.step.truncate(200),{class:'form-control', rows:"5"} %>
+              <%= hidden_field_tag :id, @recipe.id %>
+              <%= hidden_field_tag :direction_id, direction.id %>
+              <div><%= submit_tag 'update' %></div>
+            <% end %>
+          </p>
+          <% end %>
+      </div>
+
+
+
+
+
+
+        <h3>Add Any Ingredients</h3>
+      <div id='anyingredients-add'>
+        <%= form_tag(save_anyingredient_path, method: :post) do %>
+        step
+          <%= text_field_tag :name %>
+          <%= hidden_field_tag :id, @recipe.id %>
+          <div><%= submit_tag 'Save' %></div>
+        <% end %>
+      </div>
+    
+      <h3>Remove Any Ingredient</h3>
+      <div id='anyingredient-remove'>
+          <% @recipe.anyingredients.each do |anyingredient| %>
+
+            <%= form_tag(remove_anyingredient_path, method: :post) do %>
+              <%= anyingredient.name %>
+              <%= hidden_field_tag :id, @recipe.id %>
+              <%= hidden_field_tag :anyingredient_id, anyingredient.id %>
+              <div><%= submit_tag 'remove' %></div>
+            <% end %>
+
+             <%= form_tag(edit_anyingredient_path, method: :post) do %>
+              <%= text_field_tag :name, anyingredient.name %>
+              <%= hidden_field_tag :id, @recipe.id %>
+              <%= hidden_field_tag :anyingredient_id, anyingredient.id %>
+              <div><%= submit_tag 'update' %></div>
+            <% end %>
+
+          <% end %>
+
+          <h3>Manage Directions</h3>
+          <a class="btn btn-default" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Manage Directions
+          </a>
+          
+            <div class="collapse" id="collapseExample">
+              <div class="well">
+                <h3>Directions</h3>
+                <h4>Add Step</h4>
+                <a class="btn btn-default" 
+                role="button" data-toggle="collapse" href="#collapseAddDirection" 
+                aria-expanded="false" aria-controls="collapseAddDirection"> Add New
+                </a>
+
+                <div id='collapseAddDirection' class="collapse">
+                  <%= render 'directions/add_new_step' %>
+                </div>
+    
+                <h3>Edit Steps</h3>
+                <div id='directions-remove'>
+                <ol>
+                    <% @recipe.directions.each do |direction| %>
+                  <li>
+               
+                    <p>
+                      <%= render 'directions/edit_step',direction:direction %>
+                      <%= render 'directions/remove_step',direction:direction %>
+
+            
+                    
+                    </p>
+                     </li>
+                    <% end %>
+                  </ol>
+                </div>
+              </div>
+            </div>
+       
+      </div>

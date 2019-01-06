@@ -1,3 +1,5 @@
+
+
 // document.addEventListener("DOMContentLoaded", function(){
  
 //   //const getcontent = document.querySelector('div#getcontent');
@@ -61,6 +63,4 @@
 //     addToCart.addEventListener('click', function(){console.log("work?")})
   
 //   }
-
-
 

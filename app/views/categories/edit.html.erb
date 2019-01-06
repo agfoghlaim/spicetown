@@ -1,13 +1,34 @@
 <h1>edit category</h1>
 
 <%= form_for :category, url: category_path(@category), method: :patch do |f| %>
-
-  
   <p>
     <%= f.label :title %>
     <%= f.text_field(:title, {:class => 'form-control'}) %>
   </p>
 
+<h4>Products</h4>
+  <div class="field">
+    <p>
+   <%= hidden_field_tag "category[product_ids][]", nil %>
+    <% @category.products.each do |p| %>
+      <%= check_box_tag "category[product_ids][]",  p.id, @category.product_ids.include?(p.id), id: dom_id(p) %>
+      <%= label_tag dom_id(p), p.title %>
+      <%= link_to  "edit product", edit_product_path(p.id) %><br>
+    <% end %>
+  </p>
+  </div>
+
+
+
+
+
 
   <p><%= f.submit({:class => 'btn'})%>
 <% end %>
+
+<h3>Products in <% @category %> category </h3>
+
+<% @category.products.each do |p| %>
+ <p> <strong><%= link_to p.title, product_path(p) %></strong></p>
+<% end %><br>
+

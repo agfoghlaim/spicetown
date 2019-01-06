@@ -1,8 +1,12 @@
 <div class="row">
-    <h1>Show Recipe Page</h1>
-    <h2>
-    <%= @recipe.title %>
+   
+    <h1>
+    <%= @recipe.title %></h1>
+
+    <% if @recipe.recipeimg.attached? %>
     <p><%= image_tag @recipe.recipeimg %></p>
+    <% end %>
+    
     <small>
         <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
         <%= link_to 'Back', recipes_path %> |
