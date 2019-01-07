@@ -37,11 +37,11 @@
     <h3>Image</h3>
     <p>
       <%= f.label :recipeimg, class:'form-label' %>
-      <%= f.file_field(:recipeimg ) %>
+      <%= f.file_field(:recipeimg) %>
     </p>
 
     <% if @isNewPath %>
-      <% render 'new_recipe' %>
+      <% render 'new_recipe', f:f %>
     <% end %>
 
 

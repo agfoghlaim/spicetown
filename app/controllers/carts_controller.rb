@@ -1,34 +1,21 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
-  def index
-    @cart = Cart.find(params[:id])
-  end
+  before_action :set_cart, only: [:show, :edit, :update, :destroy, :associate_user_with_cart]
+ 
 
   def show
-    @cart = Cart.find(params[:id])
+    #@cart = Cart.find(params[:id])
   end
 
   def edit
   end
 
   def update
-    puts "carts params are : #{params}"
-    #placeholders in cart edit view are kinda misleading
-    #if user doesn't change address the form sends empty string
-    #need to check if string is empty and if so use current_user's billing and shipping info
-
-    # if cart_params[:billing] == ""
-    #   cart_params[:billing] = @cart.user.billing_address
-    # end
-
-    # if cart_params[:shipping] == ""
-    #   cart_params[:shipping] = @cart.user.shipping_address
-    # end
+    
+ 
 
     @cart.update(
       :status => params[:status])
     
-
     if @cart.update(cart_params)
       redirect_to new_charge_path, notice: "Order saved"
     else
@@ -38,7 +25,7 @@ class CartsController < ApplicationController
 
     ##for now i'm adding a button_to to cart show view to call this
     def associate_user_with_cart
-      @cart = Cart.find(params[:id])
+      #@cart = Cart.find(params[:id])
       
       #at this point check if the user is signed in 
       #if not make them sign in

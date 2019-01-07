@@ -22,16 +22,12 @@ class ProductsController < ApplicationController
   end
 
   def filter_products
- puts "filter params: #{params}"
+    puts "filter params: #{params}"
     #get products in this cat
-
-   @cat_ids = params[:category_ids] || []
+    @cat_ids = params[:category_ids] || []
     @products = Product.joins(:categories)
-  .where('categories.id IN (?)', params[:category_ids])
+    .where('categories.id IN (?)', params[:category_ids])
 
-
-
- 
    # category = Category.find(params[:category_id])
    # @products = category.products
     

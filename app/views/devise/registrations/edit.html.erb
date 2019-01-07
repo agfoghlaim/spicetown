@@ -2,24 +2,24 @@
 
 
 
-<h3>History</h3>
+<h4>Cart History</h4>
 <% current_user.carts.each do |c| %>
   <% if c.paid == true %>
     <h4>Orders</h4>
     <p>Paid on <%=c.updated_at %></p>
     <p>Shipped to:<%= c.shipping %></p>
   <% end %>
-    <h4>Carts</h4>
-    <p>on <%=c.updated_at %>:</p>
+    
+    <p>On <%=c.updated_at %>, you shopped for:</p>
     <% c.oitems.each do |oi| %>
-      <p>You shopped for</p>
+      
       <p>
       <%=oi.product.title %>
       <%=oi.weight %>g <%=number_to_currency(oi.total , unit: "€") %>
-      <%= link_to "Shop for #{oi.product.title} now", product_path(oi.product.id), class:"btn btn-success" %>
+      <%= link_to "Shop for #{oi.product.title} now", product_path(oi.product.id), class:"btn btn-xs btn-success" %>
       </p>
     
-  <% end %>
+  <% end %><br><br>
   
  
 <% end %>
