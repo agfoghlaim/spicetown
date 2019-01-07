@@ -17,5 +17,5 @@ class Product < ApplicationRecord
 
   validates :title, :description, :price, presence: true
 
-  WEIGHT = ["100", "250", "500", "1"]
+  WEIGHT = ["100", "250", "500", "1000"]
 end
